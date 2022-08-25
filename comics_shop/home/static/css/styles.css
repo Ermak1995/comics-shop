@@ -11286,3 +11286,9 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+.comics-img {
+    width: 300px;
+    max_width: 500px;
+    height: 350px;
+}

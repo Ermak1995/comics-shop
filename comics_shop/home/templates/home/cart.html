@@ -1,0 +1,19 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+<ul>
+    {% for m in model %}
+    <li>
+        <div>
+            <h6>{{ m.title }}</h6>
+            <p>{{ m.publisher }}</p>
+            <img class="comics-img" src="{{ m.picture.url }}" alt="">
+            <hr>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock content %}
