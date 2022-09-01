@@ -1,0 +1,18 @@
+{% extends 'home/base.html' %}
+
+{% block content%}
+<ul>
+    {% for m in model %}
+    <li>
+        <a href="{% url 'dccomics' m.pk %}">
+        <div>
+            <h6>{{ m.title }}</h6>
+            <p>{{ m.publisher }}</p>
+            <img class="comics-img" src="{{ m.picture.url }}" alt="">
+            <hr>
+        </div>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

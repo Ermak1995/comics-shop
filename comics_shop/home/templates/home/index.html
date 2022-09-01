@@ -1,6 +1,16 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Welcome to my store!</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Buy comics from us</p>
+        </div>
+    </div>
+</header>
+<!-- Section-->
 <ul>
     {% for m in model %}
     <li>
@@ -8,11 +18,22 @@
             <h6>{{ m.title }}</h6>
             <p>{{ m.publisher }}</p>
             <img class="comics-img" src="{{ m.picture.url }}" alt="">
+            <p>
+                $
+                {% if m.price_now != m.price_default %}
+                <span style="text-decoration: line-through;">{{ m.price_default }}</span> {{ m.price_now }}
+                {% else %}
+                {{ m.price_default }}
+                {% endif %}
+            </p>
             {% if m.buy_status %}
-            <button class="btn btn-outline-dark mt-auto" type="submit">Purchased</button>
+            <button class="btn btn-outline-dark mt-auto">Purchased</button>
             {% else %}
-            <button class="btn btn-outline-dark mt-auto">Add to cart</button>
-            {% endif %}
+            <form action="{{ m.get_absolute_url }}" method="post" novalidate>
+                {% csrf_token %}
+                <button class="btn btn-outline-dark mt-auto">Add to cart</button>
+                {% endif %}
+            </form>
             <hr>
 
         </div>
@@ -20,16 +41,7 @@
     {% endfor %}
 </ul>
 
-<!--&lt;!&ndash; Header&ndash;&gt;-->
-<!--<header class="bg-dark py-5">-->
-<!--    <div class="container px-4 px-lg-5 my-5">-->
-<!--        <div class="text-center text-white">-->
-<!--            <h1 class="display-4 fw-bolder">Welcome to my store!</h1>-->
-<!--            <p class="lead fw-normal text-white-50 mb-0">Buy comics from us</p>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</header>-->
-<!--&lt;!&ndash; Section&ndash;&gt;-->
+
 <!--<section class="py-5">-->
 <!--    <div class="container px-4 px-lg-5 mt-5">-->
 <!--        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">-->
@@ -48,7 +60,7 @@
 <!--                    </div>-->
 <!--                    &lt;!&ndash; Product actions&ndash;&gt;-->
 <!--                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">-->
-<!--                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'comics' %}">View-->
+<!--                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View-->
 <!--                            options</a></div>-->
 <!--                    </div>-->
 <!--                </div>-->

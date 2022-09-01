@@ -6,3 +6,8 @@ class ComicsForm(forms.ModelForm):
         model = Comics
         fields = '__all__'
         picture = forms.ImageField()
+
+class PublishersForm(forms.ModelForm):
+    class Meta:
+        model = Publishers
+        fields = '__all__'

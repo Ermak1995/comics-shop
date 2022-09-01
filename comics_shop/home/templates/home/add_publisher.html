@@ -1,0 +1,12 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<h1>Add new publisher</h1>
+<form action="{% url 'add_publisher' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for f in form %}
+    <p><label for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}</p>
+    {% endfor %}
+    <button type="submit">Add</button>
+</form>
+{% endblock %}
