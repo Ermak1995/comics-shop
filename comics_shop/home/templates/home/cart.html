@@ -1,19 +1,57 @@
 {% extends 'home/base.html' %}
 
+{% block title %}
+<title>Cart</title>
+{% endblock title %}
+<title>Cart</title>
 {% block content %}
+<!-- Section-->
+{% if model %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-<ul>
-    {% for m in model %}
-    <li>
-        <div>
-            <h6>{{ m.title }}</h6>
-            <p>{{ m.publisher }}</p>
-            <img class="comics-img" src="{{ m.picture.url }}" alt="">
-            <hr>
+            {% for m in model %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <h5 class="fw-bolder">{{ m.title }}</h5>
+                            <p>{{ m.publisher }}</p>
+                        </div>
+                    </div>
+                    <img class="card-img" src="{{ m.picture.url }}" alt="">
+                    <p>
+                        $
+                        {% if m.price_now != m.price_default %}
+                        <span style="text-decoration: line-through;">{{ m.price_default }}</span> {{ m.price_now }}
+                        {% else %}
+                        {{ m.price_default }}
+                        {% endif %}
+                    </p>
+                    <div class="text-center">
+                        <form action="{{ m.get_absolute_url }}" method="post" novalidate>
+                            {% csrf_token %}
+                            {% if m.buy_status %}
+                            <input type="submit" name="purchased" value="Purchased"
+                                   class="btn btn-outline-dark mt-auto"></input>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-    </li>
-    {% endfor %}
-</ul>
-
-
+    </div>
+</section>
+{% else %}
+<div class="container-fluid px-4 px-lg-5 mt-5">
+    <div class="text-center">
+        <div class="parent-cart">
+            <div class="block-cart">
+                <h1>Cart is empty</h1></div>
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock content %}

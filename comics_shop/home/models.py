@@ -8,6 +8,7 @@ class Comics(models.Model):
     picture = models.ImageField()
     price_default = models.FloatField()
     price_now = models.FloatField()
+    time_purchase = models.DateTimeField(auto_now=True)
     buy_status = models.BooleanField(default=False)
 
     class Meta:
@@ -18,6 +19,8 @@ class Comics(models.Model):
 
     def get_absolute_url(self):
         return reverse('view_comics', kwargs={'view_comics_id': self.pk})
+
+
 
 class Publishers(models.Model):
     title = models.CharField(max_length=150)

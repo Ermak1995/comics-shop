@@ -1,5 +1,7 @@
 {% extends 'home/base.html' %}
-
+{% block title %}
+<title>Add Publisher</title>
+{% endblock title %}
 {% block content %}
 <h1>Add new publisher</h1>
 <form action="{% url 'add_publisher' %}" method="post" enctype="multipart/form-data">

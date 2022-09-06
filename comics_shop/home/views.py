@@ -2,20 +2,21 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
+from django.views.generic import ListView, DetailView
 
 count = Comics.objects.filter(buy_status=True).count
 
 
-def index(request):
-    model = Comics.objects.all()
+class IndexView(ListView):
+    model = Comics
+    template_name = 'home/index.html'
+    extra_context = {'count': count}
 
-    return render(request, 'home/index.html', {'model': model, 'count': count})
 
-
-def dccomics(request):
-    model = Comics.objects.filter(publisher='DC Comics')
-    return render(request, 'home/dccomics.html', {'model': model})
-
+# def index(request):
+#     model = Comics.objects.all()
+#
+#     return render(request, 'home/index.html', {'model': model, 'count': count})
 
 def add_comics(request):
     if request.method == 'POST':
@@ -41,14 +42,24 @@ def add_publisher(request):
 
 
 def cart(request):
-    model = Comics.objects.filter(buy_status=True)
-    return render(request, 'home/cart.html', {'model': model, 'count': count})
+    return render(request, 'home/cart.html', {'count': count})
 
 
 def view_comics(request, view_comics_id):
-    # if request.method == 'POST':
-    buy_comics = Comics.objects.get(pk=view_comics_id)
-    buy_comics.buy_status = True
-    buy_comics.save()
+    product = Comics.objects.get(pk=view_comics_id)
+    if 'add' in request.POST:
+        product.buy_status = True
+    elif 'purchased' in request.POST:
+        product.buy_status = False
+    product.save()
     return redirect('index')
-    # return HttpResponse(f'Страница с номером: {view_comics_id}')
+
+
+# return HttpResponse(f'Страница с номером: {view_comics_id}')
+
+
+# def delete_comics_from_cart(request, delete_comics_from_cart_id):
+#     delete_comics = Comics.objects.get(pk=delete_comics_from_cart_id)
+#     delete_comics.buy_status = False
+#     delete_comics.save()
+#     return redirect('cart')
