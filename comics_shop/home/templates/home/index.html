@@ -15,11 +15,11 @@
 </header>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #a7a7a7;">
     <div class="container px-4 px-lg-5">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">DC Comics</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Batman</a></li>
@@ -41,7 +41,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown" style="margin-left: 20px">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown2" href="#" role="button"
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">Dark Horse Comics</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Sin City</a></li>
@@ -49,7 +49,15 @@
                         <li><a class="dropdown-item" href="#">Hellboy</a></li>
                     </ul>
                 </li>
-
+                <li class="nav-item dropdown" style="margin-left: 20px">
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">Bubble</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Майор Гром</a></li>
+                        <li><a class="dropdown-item" href="#!">Бесобой</a></li>
+                        <li><a class="dropdown-item" href="#">Красная Фурия</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -76,54 +84,52 @@
 <section class="py-5">
 
     <!--<ul>-->
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    <div class="container px-4 px-lg-3 mt-5">
+        <div class="row g-px-10 g-mb-20 wx_slick_slider">
             {% for m in model %}
             <!--    <li>-->
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <h5 class="fw-bolder">{{ m.title }}</h5>
-                            <p>{{ m.publisher }}</p>
-                        </div>
-                    </div>
-                    <img class="card-img" src="{{ m.picture.url }}" alt="">
-                    <p>
-                        $
-                        {% if m.price_now != m.price_default %}
-                        <span style="text-decoration: line-through;">{{ m.price_default }}</span> {{ m.price_now }}
-                        {% else %}
-                        {{ m.price_default }}
-                        {% endif %}
-                    </p>
-                    <div class="text-center">
-                        <form action="{{ m.get_absolute_url }}" method="post" novalidate>
-                            {% csrf_token %}
-                            {% if m.buy_status %}
-                            <button type="submit" name="purchased"
-                                    class="btn btn-outline-dark mt-auto">Purchased
-                            </button>
-                            <!--                            <script>-->
-                            <!--                                function ShowMessage(){-->
-                            <!--                                    var response = confirm('Вы уверены, что хотите удалить товар из корзины?');-->
-                            <!--                                    alert(response);-->
-                            <!--                            </script>-->
-                            {% else %}
+            <div class="col mb-5 md-3"><a class="u-link-v5 d-block text-center" href="{% url 'readmore' m.pk %}">
+                <div class="comics-block-link">
 
-                            <!--                        <div class="card-footer p-3 pt-1 border-top-0 bg-transparent">-->
-                            <button type="submit" name="add"
-                                    class="btn btn-outline-dark mt-auto">Add to cart
-                            </button>
+                        <div class="card h-100">
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder" style="color: #000;">{{ m.title }}</h5>
+                                    <p style="color: #000;">{{ m.publisher }}</p>
+                                </div>
+                            </div>
+                            <img class="w-100 d-block g-mb-10 g-max-width-250 mx-auto lazy" src="{{ m.picture.url }}" alt="">
+                            <p style="color: #000;">
+                                $
+                                {% if m.price_now != m.price_default %}
+                                <span style="text-decoration: line-through;">{{ m.price_default }}</span> {{ m.price_now }}
+                                {% else %}
+                                {{ m.price_default }}
+                                {% endif %}
+                            </p>
 
-                            {% endif %}
-                        </form>
-                    </div>
-                    <!--            <hr>-->
-                </div>
+                            <div class="text-center">
+                                <form action="{{ m.get_absolute_url }}" method="post" novalidate>
+                                    {% csrf_token %}
+                                    <a href="{% url 'readmore' m.pk %}" class="btn btn-primary btn-md px-2 me-sm-3"
+                                       style="background-color: #1da6e0;">Read more..
+                                    </a>
+                                    {% if m.buy_status %}
+                                    <button type="submit" name="purchased"
+                                            class="btn btn-outline-dark mt-auto">Purchased
+                                    </button>
+                                    {% else %}
+                                    <button type="submit" name="add"
+                                            class="btn btn-outline-dark mt-auto">Add to cart
+                                    </button>
+
+                                    {% endif %}
+                                </form>
+                            </div>
+                            <!--            <hr>-->
+                        </div></div></a>
             </div>
             <!--    </li>-->
-
             {% endfor %}
 
         </div>

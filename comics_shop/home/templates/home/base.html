@@ -40,24 +40,42 @@
                         <li>
                             <hr class="dropdown-divider"/>
                         </li>
-                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                        <li><button name="pop_items" type="submit"><a class="dropdown-item" href="{% url 'index' %}">Popular Items</a></button></li>
+                        {% if is_superuser %}
                         <li><a class="dropdown-item" href="{% url 'add_comics' %}">New </a></li>
-
+                        {% endif %}
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
             </ul>
+            <div style="margin-right:20px;">
+            {% if user.is_authenticated %}
+                <h2><a href="{% url 'profile' %}">{{ user.username }}</a></h2>
+            {% else %}
+            <p><a href="{% url 'registration' %}">Регистрация</a> | <a href="{% url 'login' %}">Войти</a></p>
+            {% endif %}
+</div>
+            <div>
             <form class="d-flex">
+
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi-cart-fill me-1"></i>
                     <a href="{% url 'cart' %}">Cart</a>
                     <span class="badge bg-dark text-white ms-1 rounded-pill">{{ count }}</span>
-                </button>
-            </form>
-        </div>
-    </div>
-</nav>
+             </button>
 
+            </form>
+            </div>
+
+        </div></div>
+</nav>
+<!--{% if messages %}-->
+<!--    <ul class="messages">-->
+<!--        {% for message in messages %}-->
+<!--        <li>{{ message }}</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--{% endif %}-->
 {% block content%}
 
 {% endblock %}

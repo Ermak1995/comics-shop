@@ -1,0 +1,10 @@
+{% extends 'home/base.html' %}
+{% block title %}
+<title>Read Info</title>
+{% endblock title %}
+
+{% block content %}
+<h1>{{ m.title }}</h1>
+<p>{{ m.description }}</p>
+<img src="{{m.picture.url}}" alt="">
+{% endblock %}
