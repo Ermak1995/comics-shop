@@ -111,7 +111,7 @@
                             <div class="text-center">
                                 <form action="{{ m.get_absolute_url }}" method="post" novalidate>
                                     {% csrf_token %}
-                                    <a href="{% url 'readmore' m.pk %}" class="btn btn-primary btn-md px-2 me-sm-3"
+                                    <a href="readmore/{{ m.get_absolute_url }}   " class="btn btn-primary btn-md px-2 me-sm-3"
                                        style="background-color: #1da6e0;">Read more..
                                     </a>
                                     {% if m.buy_status %}
