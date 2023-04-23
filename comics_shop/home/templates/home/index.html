@@ -1,325 +1,102 @@
 {% extends 'home/base.html' %}
-{% block title %}
-<title>Home</title>
-{% endblock title %}
+
 {% block content %}
-
-<!-- Header-->
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Welcome to my store!</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Buy comics from us</p>
-        </div>
-    </div>
-</header>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #a7a7a7;">
-    <div class="container px-4 px-lg-5">
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">DC Comics</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Batman</a></li>
-                        <li><a class="dropdown-item" href="#!">Superman</a></li>
-                        <li><a class="dropdown-item" href="#">Wonder Woman</a></li>
-                        <li><a class="dropdown-item" href="#">Flash</a></li>
-                        <li><a class="dropdown-item" href="#">Green Lantern</a></li>
+<main class="container-fluid">
+    <div class="container">
+        <section class="categories row">
+            <div class="categories-menu col-3">
+                <h3 class="d-flex align-items-center">Категории</h3>
+                <nav class="menu">
+                    <ul>
+                        <!--                        <li><a href="">Манга</a></li>-->
+                        <li><a href="#">Издательства</a>
+                            <ul class="sub-categories">
+                                <li><a href="#">DC</a></li>
+                                <li><a href="#">Marvel</a></li>
+                                <li><a href="#">Bubble</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">По странам</a>
+                            <ul class="sub-categories">
+                                <li><a href="#">Российские</a></li>
+                                <li><a href="#">Европейские</a></li>
+                                <li><a href="#">Американские</a></li>
+                                <li><a href="#">Азиатские</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">По жанрам</a>
+                            <ul class="sub-categories">
+                                <li><a href="#">Фантастика</a></li>
+                                <li><a href="#">Драма</a></li>
+                                <li><a href="#">Комедия</a></li>
+                                <li><a href="#">Ужасы</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-                <li class="nav-item dropdown" style="margin-left: 20px">
-                    <a class="nav-link dropdown-toggle" href="#" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">Marvel</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Spider Man</a></li>
-                        <li><a class="dropdown-item" href="#!">Iron Man</a></li>
-                        <li><a class="dropdown-item" href="#">Captain America</a></li>
-                        <li><a class="dropdown-item" href="#">Thor</a></li>
-                        <li><a class="dropdown-item" href="#">Hulk</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown" style="margin-left: 20px">
-                    <a class="nav-link dropdown-toggle" href="#" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">Dark Horse Comics</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Sin City</a></li>
-                        <li><a class="dropdown-item" href="#!">Star Wars</a></li>
-                        <li><a class="dropdown-item" href="#">Hellboy</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown" style="margin-left: 20px">
-                    <a class="nav-link dropdown-toggle" href="#" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">Bubble</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Майор Гром</a></li>
-                        <li><a class="dropdown-item" href="#!">Бесобой</a></li>
-                        <li><a class="dropdown-item" href="#">Красная Фурия</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
+                </nav>
+            </div>
+            <div class="items col-9">
+                <div class="nav d-flex flex-wrap justify-content-between align-items-center">
+<!--                    <div class="sort d-flex align-items-center">-->
+<!--                        <p>Сортировать по: </p>-->
+<!--                            <button type="submit" name="title" style="padding: 0;-->
+<!--  border: none;-->
+<!--  font: inherit;-->
+<!--  color: inherit;-->
+<!--  background-color: transparent">-->
+<!--                                Название-->
+<!--                            </button>-->
+<!--                            <button type="submit" name="price" style="padding: 0;-->
+<!--  border: none;-->
+<!--  font: inherit;-->
+<!--  color: inherit;-->
+<!--  background-color: transparent">-->
+<!--                                Цена-->
+<!--                            </button>-->
+<!--                            <button type="submit" name="title" style="padding: 0;-->
+<!--  border: none;-->
+<!--  font: inherit;-->
+<!--  color: inherit;-->
+<!--  background-color: transparent">-->
+<!--                                Популярность-->
+<!--                            </button>-->
+<!--                    </div>-->
 
-</nav>
-<!--<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #a7a7a7;">-->
-<!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--        <ul class="navbar-nav mr-auto" style="margin-left: 50px;">-->
-<!--            <li class="nav-item dropdown">-->
-<!--                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"-->
-<!--                   aria-haspopup="true" aria-expanded="false">-->
-<!--                    DC Comics-->
-<!--                </a>-->
-<!--                <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-<!--                    <a class="dropdown-item" href="#">Action</a>-->
-<!--                    <a class="dropdown-item" href="#">Another action</a>-->
-<!--                    <a class="dropdown-item" href="#">Something else here</a>-->
-<!--                </div>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</nav>-->
-<!-- Section-->
-<section class="py-5">
+                </div>
 
-    <!--<ul>-->
-    <div class="container px-4 px-lg-3 mt-5">
-        <div class="row g-px-10 g-mb-20 wx_slick_slider">
-            {% for m in model %}
-            <!--    <li>-->
-            <div class="col mb-5 md-3"><a class="u-link-v5 d-block text-center" href="{% url 'readmore' m.pk %}">
-                <div class="comics-block-link">
+                <div class="boxes d-flex flex-wrap justify-content-between align-items-center">
+                    {% for m in model %}
+                    <a class="u-link-v5 d-block text-center" href="{% url 'readmore' m.pk %}">-->
 
-                        <div class="card h-100">
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder" style="color: #000;">{{ m.title }}</h5>
-                                    <p style="color: #000;">{{ m.publisher }}</p>
+                        <div class="box">
+                            <figure class="justify-content-between align-items-center">
+                                <div class="figure">
+                                    <img src="{{ m.picture }}" alt="">
                                 </div>
-                            </div>
-                            <img class="w-100 d-block g-mb-10 g-max-width-250 mx-auto lazy" src="{{ m.picture.url }}" alt="">
-                            <p style="color: #000;">
-                                $
-                                {% if m.price_now != m.price_default %}
-                                <span style="text-decoration: line-through;">{{ m.price_default }}</span> {{ m.price_now }}
-                                {% else %}
-                                {{ m.price_default }}
-                                {% endif %}
-                            </p>
-
-                            <div class="text-center">
-                                <form action="{{ m.get_absolute_url }}" method="post" novalidate>
+                                <figcaption>
+                                    <p><span>{{ m.title }}</span></p>
+                                    <p><span>{{ m.price }}</span></p>
+                                </figcaption>
+                                <form action="{% url 'view_comics' m.pk %}" method="post">
                                     {% csrf_token %}
-                                    <a href="readmore/{{ m.get_absolute_url }}   " class="btn btn-primary btn-md px-2 me-sm-3"
-                                       style="background-color: #1da6e0;">Read more..
-                                    </a>
                                     {% if m.buy_status %}
-                                    <button type="submit" name="purchased"
-                                            class="btn btn-outline-dark mt-auto">Purchased
+                                    <button class="buy_button d-flex justify-content-center align-items-center "
+                                            name="purchased" type="submit">В корзине
                                     </button>
                                     {% else %}
-                                    <button type="submit" name="add"
-                                            class="btn btn-outline-dark mt-auto">Add to cart
+                                    <button class="d-flex justify-content-center align-items-center" name="add"
+                                            type="submit">Купить
                                     </button>
-
                                     {% endif %}
                                 </form>
-                            </div>
-                            <!--            <hr>-->
-                        </div></div></a>
+                            </figure>
+                        </div>
+                        {% endfor %}
+                    </a>
+                </div>
             </div>
-            <!--    </li>-->
-            {% endfor %}
-
-        </div>
+        </section>
     </div>
-    <!--</ul>-->
-</section>
-<!-- Footer-->
-<footer class="py-5 bg-dark">
-    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
-</footer>
-
-{% endblock %}
-<section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Fancy Product</h5>
-                            <!-- Product price-->
-                            $40.00 - $80.00
-                        </div>
-                    </div>
-
-                    Product actions
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View
-                            options</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Sale badge-->
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                    </div>
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Special Item</h5>
-
-                            <!-- Product price-->
-                            <span class="text-muted text-decoration-line-through">$20.00</span>
-                            $18.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Sale badge-->
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                    </div>
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Sale Item</h5>
-                            <!-- Product price-->
-                            <span class="text-muted text-decoration-line-through">$50.00</span>
-                            $25.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Popular Item</h5>
-
-                            <!-- Product price-->
-                            $40.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Sale badge-->
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                    </div>
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Sale Item</h5>
-                            <!-- Product price-->
-                            <span class="text-muted text-decoration-line-through">$50.00</span>
-                            $25.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Fancy Product</h5>
-                            <!-- Product price-->
-                            $120.00 - $280.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Sale badge-->
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                    </div>
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Special Item</h5>
-
-                            <!-- Product price-->
-                            <span class="text-muted text-decoration-line-through">$20.00</span>
-                            $18.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Popular Item</h5>
-                            <!-- Product price-->
-                            $40.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
+</main>
+{% endblock content %}

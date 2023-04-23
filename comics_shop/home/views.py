@@ -3,33 +3,40 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import *
-from .models import *
+from .models import Comics_create_json
 from django.views.generic import ListView, DetailView
 from django.contrib import messages
 
-# count = Comics.objects.filter(buy_status=True).count
+
+count = Comics_create_json.objects.filter(buy_status=True).count
 
 
-class IndexView(ListView):
-    model = Comics
-    template_name = 'home/index.html'
+# class IndexView(ListView):
+#     model = Comics_create_json
+#     template_name = 'home/index.html'
 
-    # def pop_items(self, request):
-    #     if 'pop_items' in request.post:
-    #         model = Comics.objects.order_by('quantity_purchased')
+# def pop_items(self, request):
+#     if 'pop_items' in request.post:
+#         model = Comics.objects.order_by('quantity_purchased')
 
 class ReadMore(DetailView):
-    model = Comics
+    model = Comics_create_json
     template_name = 'home/readmore.html'
     pk_url_kwarg = 'readmore_id'
     context_object_name = 'm'
 
 
 
-# def index(request):
-#     model = Comics.objects.all()
-#
-#     return render(request, 'home/index.html', {'model': model, 'count': count})
+def index(request):
+    if 'title' in request.POST:
+        model = Comics_create_json.objects.order_by('title')
+    elif 'price' in request.POST:
+        model = Comics_create_json.objects.order_by('price')
+    else:
+        model = Comics_create_json.objects.all()
+
+    return render(request, 'home/index.html', {'model': model})
+
 
 def add_comics(request):
     if request.method == 'POST':
@@ -55,23 +62,32 @@ def add_publisher(request):
 
 
 def cart(request):
-    model = Comics.objects.filter(buy_status=True).order_by('-time_purchase')
+    model = Comics_create_json.objects.filter(buy_status=True)
     return render(request, 'home/cart.html', {'model': model})
 
 
 def view_comics(request, view_comics_id):
-    product = Comics.objects.get(pk=view_comics_id)
+    product = Comics_create_json.objects.get(pk=view_comics_id)
     if 'add' in request.POST:
         product.buy_status = True
+        product.save()
+        return redirect('index')
     elif 'purchased' in request.POST:
         product.buy_status = False
-    product.save()
+        product.save()
+        return redirect('index')
+    elif 'refusal' in request.POST:
+        product.buy_status = False
+        product.save()
+        return redirect('cart')
 
-    return redirect('index')
+
+
+
 
 def registration(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterUserForm(request.POST)
         if form.is_valid():
             user = form.save()
             messages.success(request, 'Вы успешно зарегистрировались')
@@ -80,20 +96,22 @@ def registration(request):
         else:
             messages.error(request, 'Ошибка регистрации!')
     else:
-        form = UserCreationForm()
+        form = RegisterUserForm()
     return render(request, 'home/registration.html', {'form': form})
+
 
 def user_login(request):
     if request.method == 'POST':
-        form = UserLoginForm(data=request.POST)
+        form = LoginUserForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
             messages.success(request, 'Вы успешно вошли')
             return redirect('index')
     else:
-        form = UserLoginForm()
+        form = LoginUserForm()
     return render(request, 'home/login.html', {'form': form})
+
 
 def profile(request):
     if request.method == "POST":

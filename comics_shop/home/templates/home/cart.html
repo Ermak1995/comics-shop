@@ -7,51 +7,56 @@
 {% block content %}
 <!-- Section-->
 {% if model %}
-<section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
-            {% for m in model %}
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <h5 class="fw-bolder">{{ m.title }}</h5>
-                            <p>{{ m.publisher }}</p>
-                        </div>
+<main class="container-fluid">
+    <div class="container">
+        <section class="categories row">
+            <div class="items col-9">
+                <!--				<div class="nav d-flex flex-wrap justify-content-between align-items-center">-->
+                <!--					<div class="sort d-flex align-items-center">-->
+                <!--						<p>Сортировать по: </p>-->
+                <!--						<a href="#" class="d-flex">-->
+                <!--							Название-->
+                <!--						</a>-->
+                <!--						<a href="#" class="d-flex">-->
+                <!--							Цена-->
+                <!--						</a>-->
+                <!--					</div>-->
+                <!--				</div>-->
+                <div class="boxes d-flex flex-wrap justify-content-between align-items-center">
+                    {% for m in model %}
+                    <div class="box">
+                        <figure class="justify-content-between align-items-center">
+                            <div class="figure">
+                                <img src="{{ m.picture }}" alt="">
+                            </div>
+                            <figcaption>
+                                <p><span>{{ m.title }}</span></p>
+                                <p><span>{{ m.price }}</span></p>
+                            </figcaption>
+                            <form action="{% url 'view_comics' m.pk %}" method="post">
+                                {% csrf_token %}
+                                {% if m.buy_status %}
+                                <button class="buy_button d-flex justify-content-center align-items-center "
+                                        name="refusal" type="submit">В корзине
+                                </button>
+                                {% endif %}
+                            </form>
+                        </figure>
                     </div>
-                    <img class="card-img" src="{{ m.picture.url }}" alt="">
-                    <p>
-                        $
-                        {% if m.price_now != m.price_default %}
-                        <span style="text-decoration: line-through;">{{ m.price_default }}</span> {{ m.price_now }}
-                        {% else %}
-                        {{ m.price_default }}
-                        {% endif %}
-                    </p>
-                    <div class="text-center">
-                        <form action="{{ m.get_absolute_url }}" method="post" novalidate>
-                            {% csrf_token %}
-                            {% if m.buy_status %}
-                            <input type="submit" name="purchased" value="Purchased"
-                                   class="btn btn-outline-dark mt-auto"></input>
-                            {% endif %}
-                        </form>
+                    {% endfor %}
+                </div>
+            </div>
+            </section>
+            </div>
+</main>
+            {% else %}
+            <div class="container-fluid px-4 px-lg-5 mt-5">
+                <div class="text-center">
+                    <div class="parent-cart">
+                        <div class="block-cart">
+                            <h1>В корзине еще нет товаров</h1></div>
                     </div>
                 </div>
             </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-{% else %}
-<div class="container-fluid px-4 px-lg-5 mt-5">
-    <div class="text-center">
-        <div class="parent-cart">
-            <div class="block-cart">
-                <h1>Cart is empty</h1></div>
-        </div>
-    </div>
-</div>
-{% endif %}
-{% endblock content %}t
+            {% endif %}
+            {% endblock content %}

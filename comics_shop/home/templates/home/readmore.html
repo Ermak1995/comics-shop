@@ -4,7 +4,35 @@
 {% endblock title %}
 
 {% block content %}
-<h1>{{ m.title }}</h1>
-<p>{{ m.description }}</p>
-<img src="{{m.picture.url}}" alt="">
+<div class="container">
+    <h1 style="margin: 30px;
+               text-align: center;
+">{{ m.title }}</h1>
+    <div>
+        <img style="
+        padding: 20px;
+        text-align: center;
+        float: left;
+" src="{{m.picture}}" alt="">
+        <h2>Описание:</h2>
+        <span style="
+    width: 80%;
+    height: 10%;
+    padding: 5px;">{{ m.description }}</span>
+    </div>
+    <span style="font-size:36px">В наличии</span>
+    <span style="font-size:36px">{{ m.price }}</span>
+    <form action="{% url 'view_comics' m.pk %}" method="post">
+        {% csrf_token %}
+        {% if m.buy_status %}
+        <button class="buy_button d-flex justify-content-center align-items-center "
+                name="purchased" type="submit">В корзине
+        </button>
+        {% else %}
+        <button class="d-flex justify-content-center align-items-center" name="add"
+                type="submit">Купить
+        </button>
+        {% endif %}
+    </form>
+</div>
 {% endblock %}

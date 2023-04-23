@@ -2,7 +2,7 @@ from django.urls import path, include
 from .views import *
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='index'),
+    path('', index, name='index'),
     path('<int:view_comics_id>', view_comics, name='view_comics'),
     path('readmore/<int:readmore_id>', ReadMore.as_view(), name='readmore'),
     path('add_comics/', add_comics, name='add_comics'),
